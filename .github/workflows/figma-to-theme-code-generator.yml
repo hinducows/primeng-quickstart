@@ -20,9 +20,9 @@ jobs:
         uses: primefaces/theme-designer-ci@1.0.0-beta.4
         with:
           designer-secret: ${{ secrets.THEME_DESIGNER_SECRET_KEY }}
-          theme-name: "acme"
-          font-size: "14px"
+          theme-name: "csi"
+          font-size: "16px"
           font-family: "Inter Var"
           project: "primeng"
           tokens-path: "tokens.json"
-          output-dir: "./src/app/acme-theme"
+          output-dir: "./src/app/csi-theme"
