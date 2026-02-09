@@ -2,26 +2,7 @@
 // some components require additional css to match Figma styling beyond Prime's initial tokens/styling.
 
 import type { Preset } from "@primeuix/themes/types";
-import type { ExtendedCSS } from "@primeuix/themes/types";
 import CSITheme from "./csi-theme";
-
-// mergeCss function combines existing css with new styles that reference design tokens
-const mergeCss = (base: ExtendedCSS, extra: string): ExtendedCSS => {
-  if (!base) {
-    return extra;
-  }
-
-  if (typeof base === "function") {
-    return (options) => `${base(options)}\n${extra}`;
-  }
-
-  return `${base}\n${extra}`;
-};
-
-const getCss = (value: unknown): ExtendedCSS =>
-  value && typeof value === "object" && "css" in value
-    ? (value as { css?: ExtendedCSS }).css
-    : undefined;
 
 const CSIPreset: Preset = {
   ...CSITheme,
@@ -29,10 +10,7 @@ const CSIPreset: Preset = {
     ...CSITheme.components,
     button: {
       ...CSITheme.components?.button,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["button"]),
-        // custom css for various components for further customization using design tokens 
-        `
+      css: `
 .p-button {
     font-size: dt('button.font.size');
     line-height: dt('button.line.height');
@@ -72,14 +50,11 @@ const CSIPreset: Preset = {
     stroke-width: dt('button.figma.stroke.width');
     stroke-dasharray: dt('button.figma.stroke.style');
 }
-`
-      ),
+`,
     },
     inputtext: {
       ...CSITheme.components?.inputtext,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["inputtext"]),
-        `
+      css: `
 .p-inputtext {
     font-size: dt('inputtext.font.size');
     line-height: dt('inputtext.line.height');
@@ -94,14 +69,11 @@ const CSIPreset: Preset = {
     font-size: dt('inputtext.lg.font.size');
     line-height: dt('inputtext.lg.line.height');
 }
-`
-      ),
+`,
     },
     select: {
       ...CSITheme.components?.select,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["select"]),
-        `
+      css: `
 .p-select {
     font-size: dt('select.font.size');
     line-height: dt('select.line.height');
@@ -116,8 +88,7 @@ const CSIPreset: Preset = {
     font-size: dt('select.lg.font.size');
     line-height: dt('select.lg.line.height');
 }
-`
-      ),
+`,
     },
     datepicker: {
       ...CSITheme.components?.datepicker,
@@ -129,9 +100,7 @@ const CSIPreset: Preset = {
     },
     inputotp: {
       ...CSITheme.components?.inputotp,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["inputotp"]),
-        `
+      css: `
 .p-inputotp .p-inputotp-input {
     height: dt('inputotp.input.height');
 }
@@ -143,37 +112,28 @@ const CSIPreset: Preset = {
 .p-inputotp.p-inputotp-lg .p-inputotp-input {
     height: dt('inputotp.input.lg.height');
 }
-`
-      ),
+`,
     },
     inputnumber: {
       ...CSITheme.components?.inputnumber,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["inputnumber"]),
-        `
+      css: `
 .p-inputnumber-button {
     height: dt('inputnumber.button.height');
 }
-`
-      ),
+`,
     },
     radiobutton: {
       ...CSITheme.components?.radiobutton,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["radiobutton"]),
-        `
+      css: `
 .p-radiobutton,
 .p-radiobutton-box {
     border-radius: dt('radiobutton.border.radius');
 }
-`
-      ),
+`,
     },
     togglebutton: {
       ...CSITheme.components?.togglebutton,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["togglebutton"]),
-        `
+      css: `
 .p-togglebutton {
     font-size: dt('togglebutton.font.size');
     width: dt('togglebutton.width');
@@ -201,83 +161,62 @@ const CSIPreset: Preset = {
 .p-togglebutton .p-togglebutton-icon {
     font-size: dt('togglebutton.figma.icon.size');
 }
-`
-      ),
+`,
     },
     menu: {
       ...CSITheme.components?.menu,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["menu"]),
-        `
+      css: `
 .p-menu .p-submenu-header {
     font-size: dt('menu.submenu.label.font.size');
     line-height: dt('menu.submenu.label.line.height');
 }
-`
-      ),
+`,
     },
     tabs: {
       ...CSITheme.components?.tabs,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["tabs"]),
-        `
+      css: `
 .p-tab {
     font-size: dt('tabs.tab.font.size');
     line-height: dt('tabs.tab.line.height');
 }
-`
-      ),
+`,
     },
     stepper: {
       ...CSITheme.components?.stepper,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["stepper"]),
-        `
+      css: `
 .p-step-title {
     font-size: dt('stepper.step.title.font.size');
 }
-`
-      ),
+`,
     },
     divider: {
       ...CSITheme.components?.divider,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["divider"]),
-        `
+      css: `
 .p-divider {
     gap: dt('divider.gap');
 }
-`
-      ),
+`,
     },
     popover: {
       ...CSITheme.components?.popover,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["popover"]),
-        `
+      css: `
 .p-popover-content {
     gap: dt('popover.content.gap');
 }
-`
-      ),
+`,
     },
     chip: {
       ...CSITheme.components?.chip,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["chip"]),
-        `
+      css: `
 .p-chip-image,
 .p-chip img {
     border-radius: dt('chip.image.border.radius');
 }
-`
-      ),
+`,
     },
     textarea: {
       ...CSITheme.components?.textarea,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["textarea"]),
-        `
+      css: `
 .p-textarea {
     line-height: dt('form.line.height');
 }
@@ -289,41 +228,31 @@ const CSIPreset: Preset = {
 .p-textarea.p-textarea-lg {
     line-height: dt('form.lg.line.height');
 }
-`
-      ),
+`,
     },
     panelmenu: {
       ...CSITheme.components?.panelmenu,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["panelmenu"]),
-        `
+      css: `
 .p-panelmenu-header-label {
     font-size: dt('navigation.submenu.label.font.size');
 }
-`
-      ),
+`,
     },
     menubar: {
       ...CSITheme.components?.menubar,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["menubar"]),
-        `
+      css: `
 .p-menubar-submenu .p-menubar-item-label {
     font-size: dt('navigation.submenu.label.font.size');
 }
-`
-      ),
+`,
     },
     tieredmenu: {
       ...CSITheme.components?.tieredmenu,
-      css: mergeCss(
-        getCss((CSITheme.components as Record<string, unknown> | undefined)?.["tieredmenu"]),
-        `
+      css: `
 .p-tieredmenu-submenu .p-tieredmenu-item-label {
     font-size: dt('navigation.submenu.label.font.size');
 }
-`
-      ),
+`,
     },
   },
 };
